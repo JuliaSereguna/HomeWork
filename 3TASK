@@ -1,0 +1,45 @@
+// Задайте произвольный массив. Выведете 
+// его элементы, начиная с конца. Использовать
+//  рекурсию, не использовать циклы.
+
+int[] CreatArray(int size, int min, int max)
+{
+    int[] array = new int[size];
+    Random rnd = new Random();
+    for (int i = 0; i < size; i++)
+    {
+        array[i] = rnd.Next(min, max);
+    }
+    return array;
+}
+
+void PrintArray(int[] array, int index = 0)
+{
+    
+    if (index == array.Length)
+    {
+        return;
+    } 
+    PrintArray(array, index + 1);
+     Console.Write($"{array[index]} ");
+    
+}
+
+void PrintReturnedArray(int [] array, int i )
+{
+    if (i == 0)
+    {
+        return;
+    }
+    PrintReturnedArray(array, i - 1);
+
+    Console.Write($" {array[i - 1]} ");
+
+} 
+Console.WriteLine("Введите размер массива: ");
+int inputSize = Convert.ToInt32(Console.ReadLine());
+int [] newArray = CreatArray(inputSize, 0, 100);
+Console.Write("[");
+PrintArray(newArray);
+Console.Write("]");
+PrintReturnedArray(newArray, inputSize);
